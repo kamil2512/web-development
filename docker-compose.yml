@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  myapp-dev:
+    image: nginx:latest
+    container_name: myapp-dev
+    ports:
+      - "9090:90"
+    volumes:
+      - ./dev:/usr/share/nginx/html
+    networks:
+      - myapp-net
+
+  myapp-prod:
+    image: nginx:latest
+    container_name: myapp-prod
+    ports:
+      - "90:90"
+    volumes:
+      - ./web-development:/usr/share/nginx/html
+    networks:
+      - myapp-net
+
+networks:
+  myapp-net:
+    driver: bridge
+
+    
